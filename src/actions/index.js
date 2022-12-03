@@ -11,7 +11,7 @@ export const loading = () => {
 export function getCountries() {
   return async function (dispatch) {
     try {
-      let allcountries = await axios(`http://localhost:3001/countries`);
+      let allcountries = await axios(`/countries`);
       //console.log(allcountries.data)
       return dispatch({
         type: GET_COUNTRIES,
@@ -19,7 +19,7 @@ export function getCountries() {
       })
     }
     catch (e) {
-      window.location.href = "http://localhost:3000/countries/";
+      window.location.href = "/countries/";
       alert(`Something happened when fetching the data from the Server, try to refresh the web`)
     }
   }
