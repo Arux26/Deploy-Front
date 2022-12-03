@@ -10,7 +10,7 @@ export const loading = () => {
 
 export const getCountries = () => dispatch => {
   try {
-    return fetch('/countries')
+    return fetch('http://localhost:3001/countries')
       .then(r => r.json())
       .then(resul => { dispatch({ type: GET_COUNTRIES, payload: resul }) })
   } catch (e) {
@@ -20,7 +20,7 @@ export const getCountries = () => dispatch => {
 
 export const getCountrieByName = (name) => dispatch => {
   try {
-    return fetch(`/countries?name=${name}`)
+    return fetch(`http://localhost:3001/countries?name=${name}`)
       .then(r => r.json())
       .then(resul => { dispatch({ type: GET_COUNTRIE_BY_NAME, payload: resul }) })
   } catch (e) {
@@ -44,7 +44,7 @@ export const orderByPopulation = (payload) => {
 
 export const filterByContinent = (continent) => dispatch => {
   try {
-    return fetch(`/countries/continent/${continent}`)
+    return fetch(`http://localhost:3001/countries/continent/${continent}`)
       .then(r => r.json())
       .then(resul => { dispatch({ type: FILTER_BY_CONTINENT, payload: resul }) })
   } catch (e) {
@@ -61,7 +61,7 @@ export const filterByActivity = (payload) => {
 
 export const getActivities = () => dispatch => {
   try {
-    return fetch('/activities')
+    return fetch('http://localhost:3001/activities')
       .then(r => r.json())
       .then(resul => { dispatch({ type: GET_ACTIVITIES, payload: resul }) })
   } catch (e) {
@@ -71,7 +71,7 @@ export const getActivities = () => dispatch => {
 
 export const postActivity = (payload) => {
   return async function (dispatch) {
-    const res = await axios.post('/activities', payload);
+    const res = await axios.post('http://localhost:3001/activities', payload);
     return dispatch({ type: POST_ACTIVITY, payload: res.data })
   }
 };
@@ -79,7 +79,7 @@ export const postActivity = (payload) => {
 export const getCountryDetail = (id) => dispatch => {
   try {
     dispatch(loading())
-    return fetch(`/countries/${id}`)
+    return fetch(`http://localhost:3001/countries/${id}`)
       .then(r => r.json())
       .then(resul => { dispatch({ type: GET_COUNTRY_DETAIL, payload: resul }) })
   } catch (e) {
