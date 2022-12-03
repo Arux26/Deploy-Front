@@ -1,0 +1,68 @@
+.cardContainer {
+  margin-top: 2rem;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+.contenedorPrinc {
+  text-decoration: none;
+}
+
+
+.title {
+  display: flex;
+  margin-left: .5rem;
+  font-family: system-ui;
+  margin-top: .2rem;
+  color: transparent;
+  font-size: 70px;
+  background-image: linear-gradient(180deg, #ffe993, #aa5d10);
+  background-clip: text;
+  -webkit-background-clip: text;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 100%;
+}
+
+
+.containerSelects {
+  margin-top: 1rem;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 80px
+}
+
+.label {
+  margin-top: 0.5rem;
+  width: 100%;
+  height: max-content;
+  display: flex;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: bold;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  filter: drop-shadow(10px 4px 8px #0a9c64);
+}
+
+.select {
+  margin-left: 1rem;
+  width: 9rem;
+  height: 1.5rem;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+
+.buttonAll {
+  margin-left: 1rem;
+  border-radius: 20px;
+  border: #0a9c64;
+  cursor: pointer;
+}
+
+.buttonAll:hover {
+  background-color: #0a9c64;
+}
