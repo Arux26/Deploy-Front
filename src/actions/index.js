@@ -8,6 +8,18 @@ export const loading = () => {
   }
 }
 
+//--------------------------------------------------------------------------------------------------------------------//
+//FETCH
+/* export const getCountries = () => dispatch => {
+  try {
+    return fetch('/countries')
+      .then(r => r.json())
+      .then(resul => { dispatch({ type: GET_COUNTRIES, payload: resul }) })
+  } catch (e) {
+    console.log(e)
+  }
+}; */
+//AXIOS
 export function getCountries() {
   return async function (dispatch) {
     try {
@@ -19,23 +31,16 @@ export function getCountries() {
       })
     }
     catch (e) {
-      window.location.href = "/countries/";
+      window.location.href = "http://localhost:3000/countries/";
       alert(`Something happened when fetching the data from the Server, try to refresh the web`)
     }
   }
 }
 
-/* export const getCountries = () => dispatch => {
-  try {
-    return fetch('/countries')
-      .then(r => r.json())
-      .then(resul => { dispatch({ type: GET_COUNTRIES, payload: resul }) })
-  } catch (e) {
-    console.log(e)
-  }
-}; */
 
-export const getCountrieByName = (name) => dispatch => {
+//--------------------------------------------------------------------------------------------------------------------//
+
+/* export const getCountrieByName = (name) => dispatch => {
   try {
     return fetch(`/countries?name=${name}`)
       .then(r => r.json())
@@ -43,7 +48,26 @@ export const getCountrieByName = (name) => dispatch => {
   } catch (e) {
     console.log(e)
   }
+}; */
+
+export function getCountrieByName(name) {
+  return async function (dispatch) {
+    try {
+      let getCountry = await axios(`/countries?name=${name}`);
+      return dispatch({
+        type: GET_COUNTRIE_BY_NAME,
+        payload: getCountry.data
+      })
+    }
+    catch (e) {
+      window.location.href = "http://localhost:3000/countries/";
+      console.log(`There are no Countries with the combination of Characters entered: ${name}`)
+      alert(`There are no Countries with the combination of Characters entered: ${name}`)
+    }
+  }
 };
+
+//--------------------------------------------------------------------------------------------------------------------//
 
 export const orderByName = (payload) => {
   return {
@@ -59,7 +83,9 @@ export const orderByPopulation = (payload) => {
   }
 };
 
-export const filterByContinent = (continent) => dispatch => {
+//--------------------------------------------------------------------------------------------------------------------//
+
+/* export const filterByContinent = (continent) => dispatch => {
   try {
     return fetch(`/countries/continent/${continent}`)
       .then(r => r.json())
@@ -67,7 +93,28 @@ export const filterByContinent = (continent) => dispatch => {
   } catch (e) {
     console.log(e)
   }
+}; */
+
+export function filterByContinent(continent) {
+  return async function (dispatch) {
+    /* if(continent === 'world') { var urlBack = `http://localhost:3001/countries`} */
+    let urlBack = `/countries/continent/${continent}`
+    try {
+      let getContinent = await axios(urlBack);
+      return dispatch({
+        type: FILTER_BY_CONTINENT,
+        payload: getContinent.data
+      })
+
+    }
+    catch (e) {
+      window.location.href = "http://localhost:3000/countries/";
+      console.log(`Something happened when filtering by continent: ${continent}`)
+      alert(`Something happened when filtering by continent: ${continent}`)
+    }
+  }
 };
+//--------------------------------------------------------------------------------------------------------------------//
 
 export const filterByActivity = (payload) => {
   return {
@@ -75,8 +122,9 @@ export const filterByActivity = (payload) => {
     payload
   };
 };
+//--------------------------------------------------------------------------------------------------------------------//
 
-export const getActivities = () => dispatch => {
+/* export const getActivities = () => dispatch => {
   try {
     return fetch('/activities')
       .then(r => r.json())
@@ -84,7 +132,18 @@ export const getActivities = () => dispatch => {
   } catch (e) {
     console.log(e)
   }
+}; */
+
+export function getActivities() {
+  return async function (dispatch) {
+    const activities = await axios(`/activities`);
+    return dispatch({
+      type: GET_ACTIVITIES,
+      payload: activities.data
+    })
+  }
 };
+//--------------------------------------------------------------------------------------------------------------------//
 
 export const postActivity = (payload) => {
   return async function (dispatch) {
@@ -93,7 +152,9 @@ export const postActivity = (payload) => {
   }
 };
 
-export const getCountryDetail = (id) => dispatch => {
+//--------------------------------------------------------------------------------------------------------------------//
+
+/* export const getCountryDetail = (id) => dispatch => {
   try {
     dispatch(loading())
     return fetch(`/countries/${id}`)
@@ -102,7 +163,26 @@ export const getCountryDetail = (id) => dispatch => {
   } catch (e) {
     console.log(e)
   }
-};
+}; */
+
+export function getCountryDetail(id) {
+  return async function (dispatch) {
+    try {
+      dispatch(loading())
+      const info = await axios(`/countries/${id}`);
+      return dispatch({
+        type: GET_COUNTRY_DETAIL,
+        payload: info.data
+      })
+    }
+    catch (e) {
+      window.location.href = "http://localhost:3000/countries/";
+      console.log(`Something happened when filtering by id: ${id}`)
+      alert(`Something happened when filtering by id: ${id}`)
+    }
+  }
+}
+//--------------------------------------------------------------------------------------------------------------------//
 
 export const resetDetail = function () {
   return {
