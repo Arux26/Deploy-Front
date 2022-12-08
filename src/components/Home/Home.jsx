@@ -121,7 +121,7 @@ function Home() {
         {
           currentCountries.length ? currentCountries.map(e => {
             return (
-              <div >
+              <div key={e.id}>
 
                 <Card
                   id={e.id}

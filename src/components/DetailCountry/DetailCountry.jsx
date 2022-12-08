@@ -22,10 +22,10 @@ function DetailCountry() {
 
   return (
 
-    <div>
+    <div >
       {loading ? <Loading /> : countrie.length ? countrie.map(c => {
         return (
-          <div className={s.containerG}>
+          <div className={s.containerG} key={c.id}>
             <div className={s.container1}>
               <Link to="/home"><button className={s.btn}>← BACK</button></Link>
               <br />
@@ -42,16 +42,16 @@ function DetailCountry() {
               </div>
             </div>
             <div className={s.container2}>
-              <h4 className={s.activities}><h3 className={s.textAct}>Tourist activities: </h3>{c.activities.length ? c.activities.map(e => {
+              <div className={s.activities}><h3 className={s.textAct}>Tourist activities: </h3>{c.activities.length ? c.activities.map(e => {
                 return (
-                  <ul className={s.ull}>
+                  <ul className={s.ull} key={e.id}>
                     <li>Name: <span>{e.nombre}</span></li>
                     <li>Difficulty: <span>{e.dificultad}/5</span></li>
                     <li>Duration: <span>{e.duracion}hs.</span></li>
                     <li>Season: <span>{e.temporada}</span></li>
                   </ul>
                 )
-              }) : <span>Has no activities</span>}</h4>
+              }) : <span>Has no activities</span>}</div>
             </div>
           </div>
         )
