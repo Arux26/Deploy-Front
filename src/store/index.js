@@ -5,10 +5,11 @@ import thunk from "redux-thunk";
 
 const store = createStore(
     rootReducer,
-    compose(
-        applyMiddleware(thunk), //esta funcion es para poder hacer peticiones de acciones asincronas, funciona de intermediario entre la api y nuetra aplicacion
-        window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-    )
+    /*  compose(
+         applyMiddleware(thunk), //esta funcion es para poder hacer peticiones de acciones asincronas, funciona de intermediario entre la api y nuetra aplicacion
+         window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+     ) */
+    applyMiddleware(...thunk)
 );
 
 export default store;
